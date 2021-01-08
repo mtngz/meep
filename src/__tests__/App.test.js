@@ -3,6 +3,7 @@ import { shallow, mount } from "enzyme";
 import App from "../App";
 import EventList from "../EventList";
 import CitySearch from "../CitySearch";
+import EventsNumber from "../EventsNumber";
 import { mockData } from "../mock-data";
 import { extractLocations, getEvents } from "../api";
 
@@ -64,6 +65,31 @@ describe("<App /> integration", () => {
     await suggestionItems.at(suggestionItems.length - 1).simulate("click");
     const allEvents = await getEvents();
     expect(AppWrapper.state("events")).toEqual(allEvents);
+    AppWrapper.unmount();
+  });
+
+  test("App passes 'eventsNumber' as a prop to EventsNumber", () => {
+    const AppWrapper = mount(<App />);
+    const AppEventsNumberState = AppWrapper.state("numberOfEvetns");
+    expect(AppWrapper.find(EventsNumber).props().numberOfEvents).toEqual(
+      AppEventsNumberState
+    );
+    AppWrapper.unmount();
+  });
+
+  test("change list of events after user updated EventsNumber", () => {
+    const AppWrapper = mount(<App />);
+    const EventsNumberWrapper = AppWrapper.find(EventsNumber);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    EventsNumberWrapper.setState({ numberOfEvents: 32 });
+    const eventObject = { target: { value: 1 } };
+    EventsNumberWrapper.find(".events-number-input").simulate(
+      "change",
+      eventObject
+    );
+    expect(EventsNumberWrapper.state("numberOfEvents")).toBe(1);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, 1);
     AppWrapper.unmount();
   });
 });

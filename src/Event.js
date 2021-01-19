@@ -36,9 +36,11 @@ class Event extends Component {
         </div>
         {showDetails && (
           <div className="event-details">
-            <p className="details-header">About this Event:</p>
-            <p className="details-link">See details on Google Calendar</p>
+            <h4 className="details-header">About this Event:</h4>
             <p className="description">{event.description}</p>
+            <a className="details-link" href={event.htmlLink}>
+              See details on Google Calendar
+            </a>
           </div>
         )}
       </div>

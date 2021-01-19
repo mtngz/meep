@@ -91,11 +91,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Meep</h1>
+        <h4>Choose your nearest city</h4>
         <OfflineAlert text={this.state.alertText} />
-        <CitySearch
-          locations={this.state.locations}
-          updateEvents={this.updateEvents}
-        />
+        <p>
+          <CitySearch
+            locations={this.state.locations}
+            updateEvents={this.updateEvents}
+          />
+        </p>
         <EventsNumber
           eventsNumber={this.state.numberOfEvents}
           updateEvents={this.updateEvents}

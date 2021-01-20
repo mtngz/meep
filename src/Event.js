@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 class Event extends Component {
   state = {
@@ -21,7 +22,9 @@ class Event extends Component {
       <div className="event">
         <div className="event-overview">
           <h2 className="summary">{event.summary}</h2>
-          <p className="start-time">{event.start.dateTime}</p>
+          <p className="start-time">
+            {moment(event.start.dateTime).format("MMM Do YY")}
+          </p>
           <p className="location">{event.location}</p>
           {!showDetails && (
             <button className="details-btn" onClick={this.handleShowDetails}>

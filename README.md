@@ -2,7 +2,8 @@
 
 This project is a React PWA that uses the Google Calendar API. It fetches events so people can view a list of upcoming events and see data visualization charts about these events.
 
-### The application is deployed here [https://mtngz.github.io/meep/](https://mtngz.github.io/meep/), but your email address must be added to a testing list to gain access.
+### IMPORTANT NOTE: AWS Lambda Service discontinued.
+(The application is deployed here [https://mtngz.github.io/meep/](https://mtngz.github.io/meep/), but your email address must be added to a testing list to gain access.)
 
 ## Demo
 
